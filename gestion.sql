@@ -6,7 +6,7 @@ AND post_type = 'shop_order';
 
 
 
-/*borrar tickets cancelados pendientes*/
+/*borrar tickets cancelados y pendientes*/
 
 DELETE FROM wpjv_posts
 WHERE post_status IN ('lty_ticket_pending', 'wc-cancelled');
