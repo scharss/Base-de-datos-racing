@@ -1,0 +1,8 @@
+git config --global user.email "scharss@gmail.com"
+git config --global user.name "scharss"
+git clone https://github.com/scharss/Base-de-datos-racing.git
+cd NOMBRE-DEL-REPOSITORIO
+mv /ruta/a/tus/archivos/* . # O cp /ruta/a/tus/archivos/* .
+git add .
+git commit -m "Añadir archivos iniciales"
+git push origin main

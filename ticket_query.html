@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Ticket</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Consulta Número </h1>
+        <form id="ticketForm" class="mt-4">
+            <div class="form-group">
+                <label for="ticketNumber">Número de Ticket:</label>
+                <input type="text" class="form-control" id="ticketNumber" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Consultar</button>
+        </form>
+
+        <div id="ticketInfo" class="mt-4">
+            <!-- Aquí se mostrará la información del ticket -->
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#ticketForm').on('submit', function(e){
+                e.preventDefault();
+                var ticketNumber = $('#ticketNumber').val();
+                
+                // Llamada AJAX al servidor para obtener la información del ticket
+                $.ajax({
+                    url: 'ticket_check.php',  // El nombre del archivo PHP
+                    type: 'POST',
+                    data: {ticket: ticketNumber, type: 'ticket'},
+                    success: function(response){
+                        $('#ticketInfo').html(response);
+                    },
+                    error: function(){
+                        $('#ticketInfo').html('<div class="alert alert-danger" role="alert">Error al obtener la información del ticket. Por favor, inténtelo de nuevo.</div>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
